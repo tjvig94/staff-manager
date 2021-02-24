@@ -1,2 +1,4 @@
 const fs = require('fs');
-const Employee = require('./lib/employee');
+const employeeEntry = require('./src/employee-entry');
+
+employeeEntry.init();
