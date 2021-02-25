@@ -36,11 +36,10 @@ function init() {
                 message: 'Enter the office number for the manager:'            
             },
         ])
-        .then(answers => {
-            // Create the manager object
-            let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            employees.managers.push(manager);
-            nextEmployee();
+        .then(answers => {            
+            let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber); // Create the manager object
+            employees.managers.push(manager); //add manager to the array of managers in the employees object
+            nextEmployee(); // prompt user if they want to add another employee
         });
 };
 
@@ -69,9 +68,9 @@ function makeEngineer() {
             }
         ])
         .then(answers => {
-            let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-            employees.engineers.push(engineer);
-            nextEmployee();
+            let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github); //create new engineer object
+            employees.engineers.push(engineer); // add this engineer to the array of engineers in the employees object
+            nextEmployee(); // ask user if they want to add another employee
         });
 };
 
@@ -100,9 +99,9 @@ function makeIntern() {
             }
         ])
         .then(answers => {
-            let intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-            employees.interns.push(intern);
-            nextEmployee();
+            let intern = new Intern(answers.name, answers.id, answers.email, answers.school); // create new intern object
+            employees.interns.push(intern); // add intern to the array of interns in the employees object
+            nextEmployee(); // ask user if they want to add another employee
         });
 };
 
@@ -117,58 +116,62 @@ function nextEmployee() {
              }
         ])
         .then(answers => {
-            if (answers.anotherEmployee == "Engineer") {
+            if (answers.anotherEmployee == "Engineer") { // run prompts for the engineer object
                 makeEngineer();
-            } else if (answers.anotherEmployee == "Intern") {
+            } else if (answers.anotherEmployee == "Intern") { // run prompts for the intern object
                 makeIntern();
-            } else if (answers.anotherEmployee == "Exit") {           
+            } else if (answers.anotherEmployee == "Exit") {  // generate the page and exit the CLI          
                generatePage();
             };
         });
 };
 
+// return HTML for a manager card
 function managerCard(manager) {
-    return `<div class="card" style="width: 18rem;">
+    return `<div class="card mx-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${manager.name}</h5>
       <h5>Manager</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Employee ID: ${manager.id}</li>
-      <li class="list-group-item">Email: ${manager.email}</li>
-      <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
+      <li class="list-group-item"><strong>Employee ID: </strong>${manager.id}</li>
+      <li class="list-group-item"><strong>Email: </strong>${manager.email}</li>
+      <li class="list-group-item"><strong>Office Number: </strong>${manager.officeNumber}</li>
     </ul>
 </div>`;
 }; 
 
+//return HTML for an engineer card
 function engineerCard(engineer) {
-    return `<div class="card" style="width: 18rem;">
+    return `<div class="card mx-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${engineer.name}</h5>
       <h5>Engineer</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Employee ID: ${engineer.id}</li>
-      <li class="list-group-item">Email: ${engineer.email}</li>
-      <li class="list-group-item">Github: ${engineer.github}</li>
+      <li class="list-group-item"><strong>Employee ID: </strong>${engineer.id}</li>
+      <li class="list-group-item"><strong>Email: </strong>${engineer.email}</li>
+      <li class="list-group-item"><strong>Github: </strong><a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>
     </ul>
 </div>`;
 }; 
 
+// return HTML for an intern card
 function internCard(intern) {
-    return `<div class="card" style="width: 18rem;">
+    return `<div class="card mx-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${intern.name}</h5>
       <h5>Intern</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Employee ID: ${intern.id}</li>
-      <li class="list-group-item">Email: ${intern.email}</li>
-      <li class="list-group-item">School: ${intern.school}</li>
+      <li class="list-group-item"><strong>Employee ID:</strong> ${intern.id}</li>
+      <li class="list-group-item"><strong>Email:</strong> ${intern.email}</li>
+      <li class="list-group-item"><strong>School:</strong> ${intern.school}</li>
     </ul>
 </div>`;
 }; 
 
+// generate all cards for each manager in the array
 function createManagerGroup() {
     let managerGroup = "";
     employees.managers.forEach(manager => {
@@ -177,6 +180,7 @@ function createManagerGroup() {
     return managerGroup;
 }
 
+// generate all cards for each engineer in the array
 function createEngineerGroup() {
     let engineerGroup = "";
     employees.engineers.forEach(engineer => {
@@ -185,6 +189,7 @@ function createEngineerGroup() {
     return engineerGroup;
 }
 
+// generate all cards for each intern in the array
 function createInternGroup() {
     let internGroup = "";
     employees.interns.forEach(intern => {
@@ -194,7 +199,8 @@ function createInternGroup() {
 }
 
 function generatePage() { 
-let pageContent = `<!DOCTYPE html>
+    // HTML for our page, which will contain all generated cards of our team
+    let pageContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -207,7 +213,7 @@ let pageContent = `<!DOCTYPE html>
 <body>
 
     <header>
-        <div class="container-fluid">
+        <div class="container-fluid pt-5 pb-5 mb-5">
             <div class="row">
                 <h1 class="text-center">Team Viewer</h1>
             </div>
@@ -232,9 +238,9 @@ let pageContent = `<!DOCTYPE html>
 </body>
 </html>`;
 
-    fs.writeFile('index.html', pageContent, err => {
+    fs.writeFile('index.html', pageContent, err => { // Create a file titled 'index.html' that contains the generated HTML, and returns an error or success
         err ? console.log(err) : console.log("Success!");
     });
 }
-
-init();
+ 
+init(); // initialize our application 
