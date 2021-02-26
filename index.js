@@ -10,31 +10,56 @@ let employees = {
     interns: []
 };
 
+const nameBlank = async(input) => {
+    if (input == "") { // Check to make sure that the user is inputting a name.
+        return "Please enter a name!"
+    }
+    return true;
+}
+
+const numBlank = async(input) => {
+    if ((/^\d+$/g).test(input) == false || input == "") { // Check to see if the user input an actual number.
+        return "Please enter a valid number for an employee id"
+    }
+    return true;
+}
+
+const validateEmail = async(input) => {
+    if ((/^\S+@\S+$/g).test(input) == false || input == "") { // Check to see if the user put in a valid email address
+        return "Please enter a valid email address.";
+    }
+    return true;
+}
+
 const init = () => {
     inquirer
         .prompt([
             {
                 name: 'name',
                 type: 'input',
-                message: 'Enter the name of the manager for this project:'
+                message: 'Enter the name of the manager for this project:',
+                validate: nameBlank
             },
             {
                 name: 'id',
                 type: 'input',
-                message: 'Enter the id number of this employee:'
+                message: 'Enter the id number of this employee:',
+                validate: numBlank
             },
             {
                 name: 'email',
                 type: 'input',
-                message: 'Enter the email address of this employee:'
+                message: 'Enter the email address of this employee:',
+                validate: validateEmail
             },
             {
                 name: 'officeNumber',
                 type: 'input',
-                message: 'Enter the office number for the manager:'            
-            },
+                message: 'Enter the office number for the manager:',
+                validate: numBlank
+            }    
         ])
-        .then(answers => {            
+        .then(answers => {      
             let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber); // Create the manager object
             employees.managers.push(manager); //add manager to the array of managers in the employees object
             nextEmployee(); // prompt user if they want to add another employee
@@ -47,22 +72,26 @@ const makeEngineer = () => {
         {
             name: 'name',
             type: 'input',
-            message: 'Enter the name of the engineer:'
+            message: 'Enter the name of the engineer:',
+            validate: nameBlank
         },
         {
             name: 'id',
             type: 'input',
-            message: 'Enter the id number of this employee:'
+            message: 'Enter the id number of this employee:',
+            validate: numBlank
         },
         {
             name: 'email',
             type: 'input',
-            message: 'Enter the email address of this employee:'
+            message: 'Enter the email address of this employee:',
+            validate: validateEmail
         },
         {
             name: 'github',
             type: 'input',
-            message: 'Enter the github username of this employee:'            
+            message: 'Enter the github username of this employee:',
+            validate: nameBlank            
         }
     ])
     .then(answers => {
@@ -78,22 +107,26 @@ const makeIntern = () => {
             {
                 name: 'name',
                 type: 'input',
-                message: 'Enter the name of the intern:'
+                message: 'Enter the name of the intern:',
+                validate: nameBlank
             },
             {
                 name: 'id',
                 type: 'input',
-                message: 'Enter the id number of this employee:'
+                message: 'Enter the id number of this employee:',
+                validate: numBlank
             },
             {
                 name: 'email',
                 type: 'input',
-                message: 'Enter the email address of this employee:'
+                message: 'Enter the email address of this employee:',
+                validate: validateEmail
             },
             {
                 name: 'school',
                 type: 'input',
-                message: 'Enter the school of this employee:'            
+                message: 'Enter the school of this employee:',
+                validate: nameBlank           
             }
         ])
         .then(answers => {
