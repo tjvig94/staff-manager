@@ -126,12 +126,12 @@ const nextEmployee = () => {
 
 // return HTML for a manager card
 const managerCard = (manager) => {
-    return `<div class="card mx-3" style="width: 18rem;">
+    return `<div class="card m-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${manager.name}</h5>
       <h5>Manager</h5>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush pb-3">
       <li class="list-group-item"><strong>Employee ID: </strong>${manager.id}</li>
       <li class="list-group-item"><strong>Email: </strong>${manager.email}</li>
       <li class="list-group-item"><strong>Office Number: </strong>${manager.officeNumber}</li>
@@ -141,12 +141,12 @@ const managerCard = (manager) => {
 
 //return HTML for an engineer card
 const engineerCard = (engineer) => {
-    return `<div class="card mx-3" style="width: 18rem;">
+    return `<div class="card m-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${engineer.name}</h5>
       <h5>Engineer</h5>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush pb-3">
       <li class="list-group-item"><strong>Employee ID: </strong>${engineer.id}</li>
       <li class="list-group-item"><strong>Email: </strong>${engineer.email}</li>
       <li class="list-group-item"><strong>Github: </strong><a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>
@@ -156,12 +156,12 @@ const engineerCard = (engineer) => {
 
 // return HTML for an intern card
 const internCard = (intern) => {
-    return `<div class="card mx-3" style="width: 18rem;">
+    return `<div class="card m-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${intern.name}</h5>
       <h5>Intern</h5>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush pb-3">
       <li class="list-group-item"><strong>Employee ID:</strong> ${intern.id}</li>
       <li class="list-group-item"><strong>Email:</strong> ${intern.email}</li>
       <li class="list-group-item"><strong>School:</strong> ${intern.school}</li>

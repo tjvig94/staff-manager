@@ -1,0 +1,17 @@
+header {
+    color: white;
+    background-color: #383e56;
+}
+
+body {
+    background-color: #9fb8ad;
+}
+
+div.card {
+    color: white;
+    background-color: #fb743e;
+}
+
+li.list-group-item {
+    color:#383e56;
+}
