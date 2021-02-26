@@ -17,6 +17,9 @@ Navigate to the file directory, and run using
 node index
 ```
 
+![Command-Line-Use](./assets/commandline.gif)
+![Finished-Page](./assets/homepage.png)
+
 Be sure you are entering accurate information. This application currently has very basic validation. It can check to make sure you have input certain values (for exmaple, if you have input the "@" in the email address prompt, or if a value entered should be a number) and will ensure you do not leave anything blank. However, it currently cannot check if an email address is TRULY a valid email or not - only that you have entered a valid email address format. The same goes for github usernames.
 
 ## Technology and How It Works
