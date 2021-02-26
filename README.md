@@ -1,1 +1,1 @@
-# staff-manager
+# Staff Manager
